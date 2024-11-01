@@ -12,7 +12,7 @@ def OpenRead(fileName):
     f = open(fileName, 'r')
 
 
-vowels = "aeiouyAEIOUY"
+cons = "qwrtpsdfghjklzxcvbnmQWRTPSDFGHJKLZXCVBNM"
 
 import os
 
@@ -31,12 +31,13 @@ text = f.read()
 
 f.close()
 CreateAnyCost('F2.txt')
+n = int(input("Enter N: "))     ##################################
 k = int(input("Enter K: "))     ##################################
 
 counter = 1
 for ch in text:
-    if counter >= k and counter<k+5: f.write(ch)
-    elif counter > k+5: break
+    if counter >= n and counter < k: f.write(ch)
+    elif counter > k: break
     if ch == '\n': counter += 1
 
 OpenRead('F2.txt')
@@ -44,7 +45,7 @@ text = f.read()
 
 count = 0
 for ch in text:
-    if ch in vowels: count += 1
+    if ch in cons: count += 1
 
 print('\nVowels count: ' + str(count))
 

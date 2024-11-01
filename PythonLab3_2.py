@@ -1,29 +1,29 @@
-priceList = dict()
+subjects = dict()
 
-f = open('Flowers.txt', 'r')
+f = open('Students.txt', 'r')
 
 for line in f:
-    flowerName = ''
+    subjectName = ''
     step = False
-    flowerPrice = ''
+    subjectTime = 0
+    charTime = ''
 
     for ch in line:
         if ch == ' ':
+            if(step):
+                subjectTime += int(charTime)
+                charTime = '';
             step = True
             continue
         if not step:
-            flowerName += ch
+            subjectName += ch
         else: 
-            flowerPrice += ch
+            charTime += ch
 
-    priceList[flowerName] = int(flowerPrice)
+    subjects.update({subjectName : subjectTime})
 
-avgPrice = 0
-print("More than 10: ")
-for item in priceList:
-    if priceList[item] > 10 : print(item)
-    avgPrice += priceList[item]
 
-avgPrice /= len(priceList)
+print("More than 6: ")
+for item in subjects:
+    if subjects[item]/5 > 6 : print(item)
 
-print("Average price is: "+ str(avgPrice))

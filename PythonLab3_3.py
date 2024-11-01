@@ -1,25 +1,27 @@
 subjects = dict()
 
-f = open('Flowers.txt', 'r')
+f = open('Students.txt', 'r')
 
 for line in f:
+    
     subjectName = ''
     step = False
-    subjectLessons = ''
-
+    subjectTime = 0
+    charTime = ''
     for ch in line:
-        if ch == ' ' or ch == '\n':
-            if step:
-                subjects[subjectName] += int(subjectLessons)
-            else:
-                subjects[subjectName] = 0
-                step = True
+        if ch == ' ':
+            if(step):
+                subjectTime += int(charTime)
+                charTime = '';
+            step = True
             continue
         if not step:
             subjectName += ch
         else: 
-            subjectLessons += ch
+            charTime += ch
+            
+    subjects.update({subjectName : subjectTime})
 
 
 for item in subjects:
-    print("Subject: "+ item + "\tlessons: "+ str(subjects[item]))
+    print("Subject: "+ item + "\tLessons: "+ str(subjects[item]))
